@@ -1,3 +1,8 @@
-IP=`ifconfig | grep -o "tun[0-9]" | xargs ifconfig | grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}" | head -n 1`
-logger -t "Deluge Use IP" $IP
-/usr/local/bin/deluge-console -c /mnt/config/deluge/confdir "config --set listen_interface $IP" | logger -t "Deluge Use IP"
+TUNNEL=$(ifconfig | grep -o "tun[0-9]")
+if [[ -n $TUNNEL ]]; then
+    echo "Found $TUNNEL"
+    IP=`ifconfig | grep -o "tun[0-9]" | xargs ifconfig | grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}" | head -n 1`
+    /usr/local/bin/deluge-console -c /mnt/config/deluge/confdir "config --set listen_interface $IP"
+else
+    echo "No tunnels found"
+fi
