@@ -1,3 +1,4 @@
+#!/bin/bash
 TUNNEL=$(ifconfig | grep -o "tun[0-9]")
 if [[ -n $TUNNEL ]]; then
     echo "Found $TUNNEL"
@@ -6,5 +7,3 @@ if [[ -n $TUNNEL ]]; then
 else
     echo "No tunnels found"
 fi
-
-#/usr/local/bin/deluge-console -c /mnt/config/deluge/confdir "config --set listen_interface $IP"
