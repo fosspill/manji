@@ -1,0 +1,6 @@
+git clone https://github.com/gtkevemon/gtkevemon.git
+cd gtkevemon/
+make
+sudo make install
+sudo cp /usr/local/share/applications/gtkevemon.desktop /usr/share/applications/
+sudo ln -s /usr/local/bin/gtkevemon /usr/bin/gtkevemon
